@@ -1,0 +1,61 @@
+button.accordion {
+        background-color: #eee;
+        color: #828ca3;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        border-radius: 5px 5px 0px 0px;
+    }
+    
+    button.accordion.active,
+    button.accordion:hover {
+        background-color: #ddd;
+    }
+    
+    div.panel {
+        padding: 0 18px;
+        display: none;
+        background-color: white;
+        border-radius: 0px 0px 5px 5px;
+        border: 1px solid #dddddd;
+    }
+    
+    div.panel.show {
+        display: block !important;
+        padding: 5px;
+    }
+    
+    #Menu {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        font-size: 13px;
+        color: #717171;
+        width: 100%;
+    }
+    
+    #Menu li {
+        padding: 7px 10px 7px 10px;
+        text-align: left;
+    }
+    
+    #Menu li span {
+        float: right;
+    }
+    
+    #Menu li:hover {
+        background-color: #dbdbdb;
+    }
+    
+    #Menu a {
+        color: #828ca3;
+    }
+    
+    #Menu a:link {
+        color: #717171;
+        text-decoration: none;
+    }
