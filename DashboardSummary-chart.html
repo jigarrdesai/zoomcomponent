@@ -1,0 +1,644 @@
+<!doctype html>
+<html ng-app="R3apps">
+
+<head>
+    <meta charset="utf-8">
+    <title>Welcome to R3Apps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" sizes="16x16" href="assets/images/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/images/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/images/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/images/apple-touch-icon-144x144.png">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link type="text/css" rel="stylesheet" href="assets/css/fonts.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/custom.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/responsive.css" />
+    <style>
+    button.accordion {
+        background-color: #eee;
+        color: #828ca3;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        border-radius: 5px 5px 0px 0px;
+    }
+    
+    button.accordion.active,
+    button.accordion:hover {
+        background-color: #ddd;
+    }
+    
+    div.panel {
+        padding: 0 18px;
+        display: none;
+        background-color: white;
+        border-radius: 0px 0px 5px 5px;
+        border: 1px solid #dddddd;
+    }
+    
+    div.panel.show {
+        display: block !important;
+        padding: 5px;
+    }
+    
+    #Menu {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        font-size: 13px;
+        color: #717171;
+        width: 100%;
+    }
+    
+    #Menu li {
+        padding: 7px 10px 7px 10px;
+        text-align: left;
+    }
+    
+    #Menu li span {
+        float: right;
+    }
+    
+    #Menu li:hover {
+        background-color: #dbdbdb;
+    }
+    
+    #Menu a {
+        color: #828ca3;
+    }
+    
+    #Menu a:link {
+        color: #717171;
+        text-decoration: none;
+    }
+    </style>
+</head>
+
+<body ng-controller="MainCtrl">
+        <div class="wrapper">
+            <div class="sidebar-wrapper" role="navigation" ng-class="!navCollapsed && 'in'">
+                <div class="page-sidebar">
+                    <nav class="navbar navbar-default">
+                        <a class="navbar-brand" href="campaign-list.html"><img src="assets/images/logo.png" alt="logo" /></a>
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="campaign-list.html"> <i class="icon-menu1"></i> <span class="title">Create</span></a>
+                                <!--<ul class="sub-menu">
+                                    <li> <a href="ecommerce_index.html"> <i class="icon-home"></i> Dashboard</a> </li>
+                                    <li> <a href="ecommerce_orders.html"> <i class="icon-basket"></i> Orders</a> </li>
+                                    </ul> -->
+                            </li>
+                            <li>
+                                <a href="insight-dashboard-discovery.html"> <i class="icon-menu2"></i> <span class="title">Insights</span> <span class="arrow "></span> </a>
+                            </li>
+                            <li>
+                                <a href="analytics-comparative.html"> <i class="icon-menu3"></i> <span class="title">Analytics</span> <span class="arrow "></span> </a>
+                            </li>
+                            <li>
+                                <a href="javascript void(0)"> <i class="icon-menu4"></i> <span class="title">Publish</span> <span class="arrow "></span> </a>
+                            </li>
+                            <li>
+                                <a href="javascript void(0)"> <i class="icon-menu5"></i> <span class="title">Admin</span> <span class="arrow "></span></a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <ul class="nav user-dropmenu">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img alt="" src="assets/images/avatar.png" class="img-circle" /></a>
+                            <ul class="dropdown-menu">
+                                <li>Emotions</li>
+                                <li><a href="#"><i class="glyphicon glyphicon-piggy-bank"></i> My Account</a></li>
+                                <li><a href="#"><i class="glyphicon glyphicon-piggy-bank"></i> Administration</a></li>
+                                <li><a href="#"><i class="glyphicon glyphicon-piggy-bank"></i> Maintain Books</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#"><i class="glyphicon glyphicon-piggy-bank"></i> Log Out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content-wrapper" ng-class="!navCollapsed && 'in'">
+                <div class="page-content">
+                    <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed" ng-class="!navCollapsed && 'opencoll'"> <span class="sr-only">Toggle navigation</span><span class="menu-icon"><span class="icon-toggle"> <span class="lines"></span></span>
+                        </span>
+                    </button>
+                    <div class="breadcrumbs">
+                        <ul class="breadcrumbsmenu">
+                            <li class="active"><a href="insight-dashboard-discovery.html">Dashboard <span>(Discovery)</span> </a></li>
+                            <li><a href="insight-dashboard.html"> Dashboard <span>(Summary)</span></a></li>
+                            <li><a href="#"> Artificial Intelligence</a></li>
+                        </ul>
+                        <ul class="nav round-dropmenu">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="dropdowntext">New Test PMS</span> <span class="caret"></span> </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">PDF Single Manning</a></li>
+                                    <li><a href="#">Campaigns</a></li>
+                                    <li><a href="#">CrawlerTest</a></li>
+                                    <li><a href="#">Campaigns</a></li>
+                                    <li><a href="#">Bucket Test 3</a></li>
+                                    <li><a href="#">Campaigns</a></li>
+                                    <li><a href="#">DateDetction1</a></li>
+                                    <li><a href="#">Campaigns</a></li>
+                                    <li><a href="#">Test</a></li>
+                                    <li><a href="#">Campaigns</a></li>
+                                    <li><a href="#">Akshay-bhai</a></li>
+                                    <li><a href="#">Campaigns</a></li>
+                                    <li><a href="#">CRAWLINGTEST</a></li>
+                                    <li><a href="#">Campaigns</a></li>
+                                    <li><a href="#">FileDetaction3</a></li>
+                                    <li><a href="#">Campaigns</a></li>
+                                    <li><a href="#">Crawler PayTM</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="maincontent">
+                        <div class="dashboarddiscovery">
+                            <div class="widgetblock noradius">
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        <div id="chart"></div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <button class="accordion">Emotions</button>
+                                        <div class="panel">
+                                            <ul id="Menu">
+                                                <li><a href="#">Emotions</a><span>12</span></li>
+                                                <li><a href="#">Danger</a><span>12</span></li>
+                                                <li><a href="#">Happy</a><span>12</span></li>
+                                                <li><a href="#">Unhappy</a><span>12</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/angular153.js"></script>
+    <script type="text/javascript" src="assets/js/angular-animate153.js"></script>
+    <script type="text/javascript" src="assets/js/ui-bootstrap-tpls-1.3.3.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    <script>
+    var ZoomChartsLicense = "ZCP-w4sm9lg0n: Production licence for *.zoomcharts.com";
+    var ZoomChartsLicenseKey = "577dc0aa9e80ab25c83df560952407bfb23369d8c5566347c7" +
+        "b54a64a4fbc45ccf4a1e7dbaf0827249c6676c19c918ed548f67ae225e813c5f57dfdc0709137" +
+        "7b72c6c3883f1ae343abf24153ef77d3470ee58a8d62781eac016e311d12122256184e9b3efed" +
+        "8b7e38d326e1fc10efc599576f803e7a173d128115eb57dabc5f4bf7ae520a50c6963e2ab8c56" +
+        "2fa24fa46d246e57afb5bb129fb4507e738251b644f0bd9235665138f043cbce5acfa8197f934" +
+        "c58e805963693344ff5240ad98d5aba8ed583f5990cd79e109ab23daaf8cba9ac5c3fee0471b2" +
+        "f8f5abff432bff536d8980d582411724f60e01244c8ae94e3e31a4afe4e3322dc9aa5567eabc9";
+    </script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="assets/zoomcharts/zoomcharts2.js"></script>
+    <script type="text/javascript">
+    var linkId = 0;
+    var chartNodes = [{
+        "id": "r3",
+        "loaded": true,
+        "extra": {
+            "name": "R3",
+            "image": "r3"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#ee1c25"
+        }
+    }, {
+        "id": "insight",
+        "loaded": true,
+        "extra": {
+            "name": "Insight",
+            "image": "insight"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#e394a7"
+        }
+    }, {
+
+        "id": "trends",
+        "loaded": true,
+        "extra": {
+            "name": "Trends",
+            "image": "trends"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#948a71"
+        }
+    }, {
+
+        "id": "whispers",
+        "loaded": true,
+        "extra": {
+            "name": "Whispers",
+            "image": "whispers"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#566965"
+        }
+    }, {
+
+        "id": "emotions",
+        "loaded": true,
+        "extra": {
+            "name": "Emotions",
+            "image": "emotions"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#cb9476"
+        }
+    }, {
+
+        "id": "network",
+        "loaded": true,
+        "extra": {
+            "name": "Network",
+            "image": "network"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#f0d442"
+        }
+    }, {
+
+        "id": "geo",
+        "loaded": true,
+        "extra": {
+            "name": "Geo",
+            "image": "geo"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#f59330"
+        }
+    }, {
+
+        "id": "patterns",
+        "loaded": true,
+        "extra": {
+            "name": "Patterns",
+            "image": "patterns"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#d8abfe"
+        }
+    }, {
+
+        "id": "domains",
+        "loaded": true,
+        "extra": {
+            "name": "Domains",
+            "image": "domains"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#16c1c8"
+        }
+    }, {
+
+        "id": "calendar",
+        "loaded": true,
+        "extra": {
+            "name": "Calendar",
+            "image": "calendar"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#9b5071"
+        }
+    }, {
+
+        "id": "eye",
+        "loaded": true,
+        "extra": {
+            "name": "Eye",
+            "image": "eye"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#7cd7ce"
+        }
+    }, {
+
+        "id": "whispers-top",
+        "loaded": true,
+        "extra": {
+            "name": "Top"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#566965"
+        }
+    }, {
+
+        "id": "whispers-bottom",
+        "loaded": true,
+        "extra": {
+            "name": "Bottom"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#566965"
+        }
+    }, {
+
+        "id": "emotions-trend",
+        "loaded": true,
+        "extra": {
+            "name": "Trend"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#cb9476"
+        }
+    }, {
+
+        "id": "emotions-overall",
+        "loaded": true,
+        "extra": {
+            "name": "Overall"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#cb9476"
+        }
+    }, {
+
+        "id": "trends-emotion",
+        "loaded": true,
+        "extra": {
+            "name": "Emotion"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#948a71"
+        }
+    }, {
+
+        "id": "trends-overall",
+        "loaded": true,
+        "extra": {
+            "name": "Overall"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#948a71"
+        }
+    }, {
+
+        "id": "trends-domain",
+        "loaded": true,
+        "extra": {
+            "name": "Domain"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#948a71"
+        }
+    }, {
+
+        "id": "domains-trend",
+        "loaded": true,
+        "extra": {
+            "name": "Trend"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#16c1c8"
+        }
+    }, {
+
+        "id": "domains-overall",
+        "loaded": true,
+        "extra": {
+            "name": "Overall"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#16c1c8"
+        }
+    }, {
+
+        "id": "domains-emotion",
+        "loaded": true,
+        "extra": {
+            "name": "Emotion"
+        },
+        "style": {
+            radius: 100,
+            node: {
+                display: "text"
+            },
+            fillColor: "#16c1c8"
+        }
+    }];
+
+    var chartLinks = [{
+        id: linkId++,
+        from: 'r3',
+        to: 'insight'
+    }, {
+        id: linkId++,
+        from: 'r3',
+        to: 'emotions'
+    }, {
+        id: linkId++,
+        from: 'emotions',
+        to: 'emotions-trend'
+    }, {
+        id: linkId++,
+        from: 'emotions',
+        to: 'emotions-overall'
+    }, {
+        id: linkId++,
+        from: 'r3',
+        to: 'eye'
+    }, {
+        id: linkId++,
+        from: 'r3',
+        to: 'geo'
+    }, {
+        id: linkId++,
+        from: 'r3',
+        to: 'network'
+    }, {
+        id: linkId++,
+        from: 'r3',
+        to: 'whispers'
+    }, {
+        id: linkId++,
+        from: 'whispers',
+        to: 'whispers-top'
+    }, {
+        id: linkId++,
+        from: 'whispers',
+        to: 'whispers-bottom'
+    }, {
+        id: linkId++,
+        from: 'r3',
+        to: 'domains'
+    }, {
+        id: linkId++,
+        from: 'domains',
+        to: 'domains-overall'
+    }, {
+        id: linkId++,
+        from: 'domains',
+        to: 'domains-trend'
+    }, {
+        id: linkId++,
+        from: 'domains',
+        to: 'domains-emotion'
+    }, {
+        id: linkId++,
+        from: 'r3',
+        to: 'calendar'
+    }, {
+        id: linkId++,
+        from: 'r3',
+        to: 'trends'
+    }, {
+        id: linkId++,
+        from: 'trends',
+        to: 'trends-emotion'
+    }, {
+        id: linkId++,
+        from: 'trends',
+        to: 'trends-overall'
+    }, {
+        id: linkId++,
+        from: 'trends',
+        to: 'trends-domain'
+    }, {
+        id: linkId++,
+        from: 'r3',
+        to: 'patterns'
+    }];
+
+    var t = new NetChart({
+        container: document.getElementById('chart'),
+        data: {
+            preloaded: {
+                "nodes": chartNodes,
+                "links": chartLinks
+            }
+        },
+        style: {
+            node: {
+                imageCropping: true
+            },
+            nodeStyleFunction: function(node) {
+                if (node.data.extra.image) {
+                    node.display = 'image';
+                    node.image = "assets/images/zc/" + node.data.extra.image + ".png";
+                    node.label = '';
+                } else {
+                    node.display = 'roundtext';
+                    node.label = node.data.extra.name;
+                }
+            }
+        },
+        events: {
+            onSelectionChange: function(evt, args) {
+                console.log('Selection Changed')
+            }
+        },
+        navigation: {
+            initialNodes: ["Trends"]
+        },
+        interaction: {
+            selection: {
+                lockNodesOnMove: false
+            }
+        }
+    });
+    </script>
+    <script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].onclick = function() {
+            this.classList.toggle("active");
+            this.nextElementSibling.classList.toggle("show");
+        }
+    }
+    </script>
+</body>
+
+</html>
