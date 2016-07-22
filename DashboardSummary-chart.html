@@ -166,8 +166,8 @@
                                         <div id="chart"></div>
                                     </div>
                                     <div class="col-lg-3">
-                                        <button class="accordion">Emotions</button>
-                                        <div class="panel">
+                                        <button class="accordion active" id="acc">Emotions</button>
+                                        <div class="panel show" id="accContent">
                                             <ul id="Menu">
                                                 <li><a href="#">Emotions</a><span>12</span></li>
                                                 <li><a href="#">Danger</a><span>12</span></li>
@@ -202,442 +202,470 @@
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="assets/zoomcharts/zoomcharts2.js"></script>
     <script type="text/javascript">
-    var linkId = 0;
-    var chartNodes = [{
-        "id": "r3",
-        "loaded": true,
-        "extra": {
-            "name": "R3",
-            "image": "r3"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#ee1c25"
-        }
-    }, {
-        "id": "insight",
-        "loaded": true,
-        "extra": {
-            "name": "Insight",
-            "image": "insight"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#e394a7"
-        }
-    }, {
 
-        "id": "trends",
-        "loaded": true,
-        "extra": {
-            "name": "Trends",
-            "image": "trends"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#948a71"
-        }
-    }, {
+        var acc = document.getElementsByClassName('accordion');
+        var accId = document.getElementById('acc');
+        var accContent = document.getElementById('accContent');
 
-        "id": "whispers",
-        "loaded": true,
-        "extra": {
-            "name": "Whispers",
-            "image": "whispers"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#566965"
-        }
-    }, {
+        var i;
 
-        "id": "emotions",
-        "loaded": true,
-        "extra": {
-            "name": "Emotions",
-            "image": "emotions"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#cb9476"
-        }
-    }, {
-
-        "id": "network",
-        "loaded": true,
-        "extra": {
-            "name": "Network",
-            "image": "network"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#f0d442"
-        }
-    }, {
-
-        "id": "geo",
-        "loaded": true,
-        "extra": {
-            "name": "Geo",
-            "image": "geo"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#f59330"
-        }
-    }, {
-
-        "id": "patterns",
-        "loaded": true,
-        "extra": {
-            "name": "Patterns",
-            "image": "patterns"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#d8abfe"
-        }
-    }, {
-
-        "id": "domains",
-        "loaded": true,
-        "extra": {
-            "name": "Domains",
-            "image": "domains"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#16c1c8"
-        }
-    }, {
-
-        "id": "calendar",
-        "loaded": true,
-        "extra": {
-            "name": "Calendar",
-            "image": "calendar"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#9b5071"
-        }
-    }, {
-
-        "id": "eye",
-        "loaded": true,
-        "extra": {
-            "name": "Eye",
-            "image": "eye"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#7cd7ce"
-        }
-    }, {
-
-        "id": "whispers-top",
-        "loaded": true,
-        "extra": {
-            "name": "Top"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#566965"
-        }
-    }, {
-
-        "id": "whispers-bottom",
-        "loaded": true,
-        "extra": {
-            "name": "Bottom"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#566965"
-        }
-    }, {
-
-        "id": "emotions-trend",
-        "loaded": true,
-        "extra": {
-            "name": "Trend"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#cb9476"
-        }
-    }, {
-
-        "id": "emotions-overall",
-        "loaded": true,
-        "extra": {
-            "name": "Overall"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#cb9476"
-        }
-    }, {
-
-        "id": "trends-emotion",
-        "loaded": true,
-        "extra": {
-            "name": "Emotion"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#948a71"
-        }
-    }, {
-
-        "id": "trends-overall",
-        "loaded": true,
-        "extra": {
-            "name": "Overall"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#948a71"
-        }
-    }, {
-
-        "id": "trends-domain",
-        "loaded": true,
-        "extra": {
-            "name": "Domain"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#948a71"
-        }
-    }, {
-
-        "id": "domains-trend",
-        "loaded": true,
-        "extra": {
-            "name": "Trend"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#16c1c8"
-        }
-    }, {
-
-        "id": "domains-overall",
-        "loaded": true,
-        "extra": {
-            "name": "Overall"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#16c1c8"
-        }
-    }, {
-
-        "id": "domains-emotion",
-        "loaded": true,
-        "extra": {
-            "name": "Emotion"
-        },
-        "style": {
-            radius: 100,
-            node: {
-                display: "text"
-            },
-            fillColor: "#16c1c8"
-        }
-    }];
-
-    var chartLinks = [{
-        id: linkId++,
-        from: 'r3',
-        to: 'insight'
-    }, {
-        id: linkId++,
-        from: 'r3',
-        to: 'emotions'
-    }, {
-        id: linkId++,
-        from: 'emotions',
-        to: 'emotions-trend'
-    }, {
-        id: linkId++,
-        from: 'emotions',
-        to: 'emotions-overall'
-    }, {
-        id: linkId++,
-        from: 'r3',
-        to: 'eye'
-    }, {
-        id: linkId++,
-        from: 'r3',
-        to: 'geo'
-    }, {
-        id: linkId++,
-        from: 'r3',
-        to: 'network'
-    }, {
-        id: linkId++,
-        from: 'r3',
-        to: 'whispers'
-    }, {
-        id: linkId++,
-        from: 'whispers',
-        to: 'whispers-top'
-    }, {
-        id: linkId++,
-        from: 'whispers',
-        to: 'whispers-bottom'
-    }, {
-        id: linkId++,
-        from: 'r3',
-        to: 'domains'
-    }, {
-        id: linkId++,
-        from: 'domains',
-        to: 'domains-overall'
-    }, {
-        id: linkId++,
-        from: 'domains',
-        to: 'domains-trend'
-    }, {
-        id: linkId++,
-        from: 'domains',
-        to: 'domains-emotion'
-    }, {
-        id: linkId++,
-        from: 'r3',
-        to: 'calendar'
-    }, {
-        id: linkId++,
-        from: 'r3',
-        to: 'trends'
-    }, {
-        id: linkId++,
-        from: 'trends',
-        to: 'trends-emotion'
-    }, {
-        id: linkId++,
-        from: 'trends',
-        to: 'trends-overall'
-    }, {
-        id: linkId++,
-        from: 'trends',
-        to: 'trends-domain'
-    }, {
-        id: linkId++,
-        from: 'r3',
-        to: 'patterns'
-    }];
-
-    var t = new NetChart({
-        container: document.getElementById('chart'),
-        data: {
-            preloaded: {
-                "nodes": chartNodes,
-                "links": chartLinks
+        for (i = 0; i < acc.length; i++) {
+            acc[i].onclick = function() {
+                this.classList.toggle("active");
+                this.nextElementSibling.classList.toggle("show");
             }
-        },
-        style: {
-            node: {
-                imageCropping: true
-            },
-            nodeStyleFunction: function(node) {
-                if (node.data.extra.image) {
-                    node.display = 'image';
-                    node.image = "assets/images/zc/" + node.data.extra.image + ".png";
-                    node.label = '';
-                } else {
-                    node.display = 'roundtext';
-                    node.label = node.data.extra.name;
+        }
+        var linkId = 0;
+        var chartNodes = [
+            {
+                "id": "r3",
+                "loaded": true,
+                "extra": {
+                    "name": "R3",
+                    "image": "r3"
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#ee1c25"
+                }
+            }, {
+                "id": "insight",
+                "loaded": true,
+                "extra": {
+                    "name": "Insight",
+                    "image": "insight"
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#e394a7"
+                }
+            }, {
+
+                "id": "trends",
+                "loaded": false,
+                "extra": {
+                    "name": "Trends",
+                    "image": "trends"
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#948a71"
+                }
+            }, {
+
+                "id": "whispers",
+                "loaded": true,
+                "extra": {
+                    "name": "Whispers",
+                    "image": "whispers"
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#566965"
+                }
+            }, {
+
+                "id": "emotions",
+                "loaded": true,
+                "extra": {
+                    "name": "Emotions",
+                    "image": "emotions"
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#cb9476"
+                }
+            }, {
+
+                "id": "network",
+                "loaded": true,
+                "extra": {
+                    "name": "Network",
+                    "image": "network"
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#f0d442"
+                }
+            }, {
+
+                "id": "geo",
+                "loaded": true,
+                "extra": {
+                    "name": "Geo",
+                    "image": "geo"
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#f59330"
+                }
+            }, {
+
+                "id": "patterns",
+                "loaded": true,
+                "extra": {
+                    "name": "Patterns",
+                    "image": "patterns"
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#d8abfe"
+                }
+            }, {
+
+                "id": "domains",
+                "loaded": true,
+                "extra": {
+                    "name": "Domains",
+                    "image": "domains"
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#16c1c8"
+                }
+            }, {
+
+                "id": "calendar",
+                "loaded": true,
+                "extra": {
+                    "name": "Calendar",
+                    "image": "calendar"
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#9b5071"
+                }
+            }, {
+
+                "id": "eye",
+                "loaded": true,
+                "extra": {
+                    "name": "Eye",
+                    "image": "eye"
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#7cd7ce"
+                }
+            }, {
+
+                "id": "whispers-top",
+                "loaded": false,
+                "extra": {
+                    "name": "Top"
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#566965"
+                }
+            }, {
+
+                "id": "whispers-bottom",
+                "loaded": false,
+                "extra": {
+                    "name": "Bottom",
+                    endNode: true
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#566965"
+                }
+            }, {
+
+                "id": "emotions-trend",
+                "loaded": false,
+                "extra": {
+                    "name": "Trend",
+                    endNode: true
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#cb9476"
+                }
+            }, {
+
+                "id": "emotions-overall",
+                "loaded": false,
+                "extra": {
+                    "name": "Overall",
+                    endNode: true
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#cb9476"
+                }
+            }, {
+
+                "id": "trends-emotion",
+                "loaded": false,
+                "extra": {
+                    "name": "Emotion",
+                    endNode: true
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#948a71"
+                }
+            }, {
+
+                "id": "trends-overall",
+                "loaded": false,
+                "extra": {
+                    "name": "Overall",
+                    endNode: true
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#948a71"
+                }
+            }, {
+
+                "id": "trends-domain",
+                "loaded": false,
+                "extra": {
+                    "name": "Domain",
+                    endNode: true
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#948a71"
+                }
+            }, {
+
+                "id": "domains-trend",
+                "loaded": false,
+                "extra": {
+                    "name": "Trend",
+                    endNode: true
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#16c1c8"
+                }
+            }, {
+
+                "id": "domains-overall",
+                "loaded": false,
+                "extra": {
+                    "name": "Overall",
+                    endNode: true
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#16c1c8"
+                }
+            }, {
+
+                "id": "domains-emotion",
+                "loaded": false,
+                "extra": {
+                    "name": "Emotion",
+                    endNode: true
+                },
+                "style": {
+                    radius: 100,
+                    node: {
+                        display: "text"
+                    },
+                    fillColor: "#16c1c8"
                 }
             }
-        },
-        events: {
-            onSelectionChange: function(evt, args) {
-                console.log('Selection Changed')
-            }
-        },
-        navigation: {
-            initialNodes: ["Trends"]
-        },
-        interaction: {
-            selection: {
-                lockNodesOnMove: false
-            }
-        }
-    });
-    </script>
-    <script>
-    var acc = document.getElementsByClassName("accordion");
-    var i;
+        ];
 
-    for (i = 0; i < acc.length; i++) {
-        acc[i].onclick = function() {
-            this.classList.toggle("active");
-            this.nextElementSibling.classList.toggle("show");
-        }
-    }
+        var chartLinks = [
+            {
+                id: linkId++,
+                from: 'r3',
+                to: 'insight'
+            }, {
+                id: linkId++,
+                from: 'r3',
+                to: 'emotions'
+            }, {
+                id: linkId++,
+                from: 'emotions',
+                to: 'emotions-trend'
+            }, {
+                id: linkId++,
+                from: 'emotions',
+                to: 'emotions-overall'
+            }, {
+                id: linkId++,
+                from: 'r3',
+                to: 'eye'
+            }, {
+                id: linkId++,
+                from: 'r3',
+                to: 'geo'
+            }, {
+                id: linkId++,
+                from: 'r3',
+                to: 'network'
+            }, {
+                id: linkId++,
+                from: 'r3',
+                to: 'whispers'
+            }, {
+                id: linkId++,
+                from: 'whispers',
+                to: 'whispers-top'
+            }, {
+                id: linkId++,
+                from: 'whispers',
+                to: 'whispers-bottom'
+            }, {
+                id: linkId++,
+                from: 'r3',
+                to: 'domains'
+            }, {
+                id: linkId++,
+                from: 'domains',
+                to: 'domains-overall'
+            }, {
+                id: linkId++,
+                from: 'domains',
+                to: 'domains-trend'
+            }, {
+                id: linkId++,
+                from: 'domains',
+                to: 'domains-emotion'
+            }, {
+                id: linkId++,
+                from: 'r3',
+                to: 'calendar'
+            }, {
+                id: linkId++,
+                from: 'r3',
+                to: 'trends'
+            }, {
+                id: linkId++,
+                from: 'trends',
+                to: 'trends-emotion'
+            }, {
+                id: linkId++,
+                from: 'trends',
+                to: 'trends-overall'
+            }, {
+                id: linkId++,
+                from: 'trends',
+                to: 'trends-domain'
+            }, {
+                id: linkId++,
+                from: 'r3',
+                to: 'patterns'
+            }
+        ];
+
+        var t = new NetChart({
+            container: document.getElementById('chart'),
+            data: {
+                preloaded: {
+                    "nodes": chartNodes,
+                    "links": chartLinks
+                }
+            },
+            style: {
+                node: {
+                    imageCropping: true
+                },
+                nodeStyleFunction: function(node) {
+                    if (node.data.extra.image) {
+                        node.display = 'image';
+                        node.image = "assets/images/zc/" + node.data.extra.image + ".png";
+                        node.label = '';
+                    } else {
+                        node.display = 'roundtext';
+                        node.label = node.data.extra.name;
+                    }
+                }
+            },
+            events: {
+                onSelectionChange: function(evt, args) {
+
+                    var selection = evt.selection[0];
+
+                    if(selection.data.extra.endNode) {
+                        accId.innerHTML = selection.data.extra.name + '123'
+                        accContent.innerHTML = '<table class="table">' + 
+                            '<tr><td>Data One</td><td>12</td></tr>' +
+                            '<tr><td>Data Two</td><td>45</td></tr>' +
+                            '<tr><td>Data Three</td><td>78</td></tr>' +
+                        '</table>';
+                    }
+                }
+            },
+            navigation:{
+                mode:"focusnodes",
+                focusNodeExpansionRadius: 1,
+                numberOfFocusNodes: 2,
+                initialNodes:["r3"]
+            },
+            interaction: {
+                selection: {
+                    lockNodesOnMove: false
+                }
+            }
+        });
     </script>
 </body>
 

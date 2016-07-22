@@ -1,0 +1,202 @@
+<!doctype html>
+<html ng-app="R3apps">
+<head>
+	<meta charset="utf-8">
+	<title>Welcome to R3Apps</title>
+	<style>
+		html, body {
+			width: 100%;
+			height: 100%;
+			margin: 0px;
+		}
+
+		div#chart {
+			width: 100%;
+			height: 30%;
+		}
+
+	</style>
+</head>
+<body>
+	
+	<div id="chart"></div>
+
+	<script>
+		var ZoomChartsLicense = "ZCP-w4sm9lg0n: Production licence for *.zoomcharts.com";
+		var ZoomChartsLicenseKey = "577dc0aa9e80ab25c83df560952407bfb23369d8c5566347c7"+
+			"b54a64a4fbc45ccf4a1e7dbaf0827249c6676c19c918ed548f67ae225e813c5f57dfdc0709137"+
+			"7b72c6c3883f1ae343abf24153ef77d3470ee58a8d62781eac016e311d12122256184e9b3efed"+
+			"8b7e38d326e1fc10efc599576f803e7a173d128115eb57dabc5f4bf7ae520a50c6963e2ab8c56"+
+			"2fa24fa46d246e57afb5bb129fb4507e738251b644f0bd9235665138f043cbce5acfa8197f934"+
+			"c58e805963693344ff5240ad98d5aba8ed583f5990cd79e109ab23daaf8cba9ac5c3fee0471b2"+
+			"f8f5abff432bff536d8980d582411724f60e01244c8ae94e3e31a4afe4e3322dc9aa5567eabc9";
+	</script>
+	<!-- <script type="text/javascript" src="assets/zoomcharts/zoomcharts2.js"></script> -->
+	<script type="text/javascript" src="https://cdn.zoomcharts-cloud.com/1/latest/zoomcharts.js"></script>
+	<script type="text/javascript">
+
+		var data = {
+			subvalues: [
+				{
+					name: "Thirty",
+					value: 30,
+					'normal:value': 30,
+					color: '#cfdce4',
+					"id": "thirty"
+				},
+				{
+					name: "Forty Five",
+					value: 45,
+					'max:value': 45,
+					color: '#f5ad23',
+					"id": "forty-five"
+				},
+				{
+					name: "Twenty",
+					value: 20,
+					'normal:value': 20,
+					color: '#cfdce4',
+					"id": "twenty"
+				},
+				{
+					name: "Eighteen",
+					value: 18,
+					'normal:value': 18,
+					color: '#cfdce4',
+					"id": "eighteen"
+				},
+				{
+					name: "Thirty",
+					value: 30,
+					'normal:value': 30,
+					color: '#cfdce4',
+					"id": "thirty-1"
+				},
+				{
+					name: "Thirty Two",
+					value: 32,
+					'normal:value': 32,
+					color: '#cfdce4',
+					"id": "thirty-two"
+				},
+				{
+					name: "Twenty",
+					value: 20,
+					'normal:value': 20,
+					color: '#cfdce4',
+					"id": "twenty-1"
+				},
+				{
+					name: "Twenty Two",
+					value: 22,
+					'normal:value': 22,
+					color: '#cfdce4',
+					"id": "twenty-two"
+				},
+				{
+					name: "Ten",
+					value: 10,
+					'normal:value': 10,
+					color: '#cfdce4',
+					"id": "ten"
+				},
+				{
+					name: "Fifteen",
+					value: 15,
+					'normal:value': 15,
+					color: '#cfdce4',
+					"id": "fifteen"
+				}
+			]
+		};
+		var f = new FacetChart({
+			container: document.getElementById("chart"),
+			data: {
+				preloaded: data
+			},
+			series: [
+				{
+					name: ' ',
+					data: {
+						field: "normal:value"
+					},
+					style: {
+						fillColor: '#cfdce4'
+					},
+					type: 'columns',
+					stack: 'default',
+					valueLabels: {
+						enabled: false
+					}
+				},
+				{
+					name: ' ',
+					data: {
+						field: "max:value"
+					},
+					style: {
+						fillColor: '#f5ad23'
+					},
+					type: 'columns',
+					stack: 'default',
+					valueLabels: {
+	                    enabled: true,
+	                    position: "insideBase",
+	                    style: {
+	                    	padding: 5,
+	                    	margin: 5,
+	                        textStyle: {
+	                          	fillColor: "white",
+                            	font: "20pt Sinkin Sans"
+	                        },
+	                        backgroundStyle: {
+	                            lineColor: "transparent",
+	                            lineWidth: 0,
+	                            fillColor: "rgba(200,200,200,0)"
+	                        },
+	                        borderRadius: 2
+	                    },
+	                    contentsFunction: function (value) {
+	                    	return value.toFixed(0);
+	                    }
+	                }
+				}
+			],
+			chartTypes: {
+				columns: {
+					style: {
+						gradient: 1,
+						padding: [1, 1]
+					}
+				}
+			},
+			facetAxis: {
+				enabled: false
+			},
+			valueAxisDefault: {
+				enabled: false
+			},
+			area: {
+				height: null,
+			    width: null
+			},
+			toolbar: {
+				enabled: false,
+				export: false
+			},
+			interaction: {
+				resizing: {
+					enabled: false
+			    }
+			},
+			info: {
+				enabled: false,
+				showNoData: false
+			},
+			advanced: {
+				themeCSSClass: ""
+			}
+		});
+	</script>
+</body>
+</html>
