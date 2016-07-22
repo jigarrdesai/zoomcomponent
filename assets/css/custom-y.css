@@ -16,7 +16,7 @@ button.accordion {
         background-color: #ddd;
     }
     
-    div.panel {
+    div#accContent {
         padding: 0 18px;
         display: none;
         background-color: white;
@@ -24,7 +24,7 @@ button.accordion {
         border: 1px solid #dddddd;
     }
     
-    div.panel.show {
+    div#accContent.show {
         display: block !important;
         padding: 5px;
     }
